@@ -1,0 +1,79 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>qa.functional.testing</groupId>
+	<artifactId>automation-framework</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<description>It's a Java Selenium WebDriver powered framework designed to perform functional testing against web applications.</description>
+
+	<developers>
+		<developer>
+			<id>elisabethqa</id>
+			<name>Elisabeth Fournier</name>
+			<email>92223530+ElisabethQA@users.noreply.github.com</email>
+			<roles>
+				<role>qa</role>
+				<role>developer</role>
+			</roles>
+			<timezone>America/Montreal</timezone>
+			<properties>
+				<picUrl>https://avatars.githubusercontent.com/u/92223530?v=4</picUrl>
+			</properties>
+		</developer>
+	</developers>
+
+	<properties>
+		<java.version>11</java.version>
+		<selenium.version>4.0.0-rc-2</selenium.version>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
+				<configuration>
+					<source>11</source>
+					<target>11</target>
+					<release>11</release>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${selenium.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-chrome-driver</artifactId>
+			<version>${selenium.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-edge-driver</artifactId>
+			<version>${selenium.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-firefox-driver</artifactId>
+			<version>${selenium.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-ie-driver</artifactId>
+			<version>${selenium.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-opera-driver</artifactId>
+			<version>${selenium.version}</version>
+		</dependency>
+	</dependencies>
+
+</project>
