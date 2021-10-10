@@ -15,31 +15,39 @@
 // specific language governing permissions and limitations
 // under the License.
 
-package qa.functional.testing.framework.drivers.desktop.browsers;
+package qa.functional.testing.framework.drivers.desktop.browsers.remote;
 
 import static org.testng.Assert.assertTrue;
 
+import java.net.MalformedURLException;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import qa.functional.testing.framework.drivers.desktop.browsers.EdgeBrowser;
+
 /**
  * @author ElisabethQA <92223530+ElisabethQA@users.noreply.github.com>
  */
-public class ChromeBrowserTest {
+public class EdgeBrowserGridTest {
 
 	private WebDriver sut;
 	
 	@BeforeClass
-	public void setUp() {
-		sut = new ChromeBrowser().getWebDriver();
+	public void setUp() throws MalformedURLException {
+		sut = new EdgeBrowser().getWebDriver();
 	}
 	
 	@Test
-	public void shouldBeAbleToInstantiateChromeBrowser() {
-		assertTrue(sut instanceof ChromeDriver);
+	public void shouldBeAbleToInstantiateEdgeBrowserOnTheGrid() {
+		assertTrue(sut instanceof RemoteWebDriver);
+		sut.navigate().to("https://www.google.ca");
+		sut.findElement(By.name("q")).sendKeys("selenium" + Keys.ENTER);		
 	}
 	
 	@AfterClass

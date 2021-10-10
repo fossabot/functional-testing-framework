@@ -17,10 +17,17 @@
 
 package qa.functional.testing.framework.drivers.desktop;
 
+import java.net.MalformedURLException;
+
 import org.aeonbits.owner.ConfigFactory;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.AbstractDriverOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 import qa.functional.testing.framework.properties.FrameworkProperties;
 
 /**
@@ -28,16 +35,27 @@ import qa.functional.testing.framework.properties.FrameworkProperties;
  */
 public abstract class Browsers {
 
-	FrameworkProperties frameworkProperties = ConfigFactory.create(FrameworkProperties.class);
+	@Getter(AccessLevel.PROTECTED)
+	@Setter(AccessLevel.PROTECTED)
+	DesiredCapabilities capabilities;
 	
+	@Getter(AccessLevel.PROTECTED)
+	FrameworkProperties frameworkProperties = ConfigFactory.create(FrameworkProperties.class);
+
 	public Browsers() { }
 	
 	public Browsers(Driver driver) {
 		System.setProperty(driver.getProperty(), 
-				String.format("%s%s", frameworkProperties.getWebDriverPath(), driver.getExecutable()));
+				String.format("%s%s", getFrameworkProperties().getWebDriverPath(), driver.getExecutable()));
 	}
 	
 	public abstract AbstractDriverOptions<?> getOptions();
-	public abstract WebDriver getWebDriver();
+	public abstract Capabilities toCapabilities();
+	public abstract WebDriver getWebDriver() throws MalformedURLException;
+	
+	protected String getGridHost() {
+		return String.format("%s:%s%s", frameworkProperties.getGridUrl(), frameworkProperties.getGridPort(), 
+				FrameworkProperties.GRID_HUB_ENDPOINT);
+	}
 	
 }

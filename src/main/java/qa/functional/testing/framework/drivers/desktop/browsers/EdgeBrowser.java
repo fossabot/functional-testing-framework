@@ -17,13 +17,20 @@
 
 package qa.functional.testing.framework.drivers.desktop.browsers;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.remote.AbstractDriverOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import qa.functional.testing.framework.drivers.desktop.ChromiumBasedBrowsers;
 import qa.functional.testing.framework.drivers.desktop.Driver;
+import qa.functional.testing.framework.utilities.testng.TestNgXmlFile;
 
 /**
  * @author ElisabethQA <92223530+ElisabethQA@users.noreply.github.com>
@@ -41,9 +48,19 @@ public class EdgeBrowser extends ChromiumBasedBrowsers {
 		edgeOptions.addArguments(ARGUMENT_INPRIVATE_MODE);
 		return edgeOptions;
 	}
+	
+	@Override
+	public Capabilities toCapabilities() {
+		setCapabilities(new DesiredCapabilities());
+		getCapabilities().setCapability(EdgeOptions.CAPABILITY, getOptions());
+		return getCapabilities(); 
+	}
 
 	@Override
-	public WebDriver getWebDriver() {
+	public WebDriver getWebDriver() throws MalformedURLException {
+		if (TestNgXmlFile.isGridExecution()) {
+			return new RemoteWebDriver(new URL(getGridHost()), toCapabilities());
+		}
 		return new EdgeDriver((EdgeOptions) getOptions());
 	}
 
