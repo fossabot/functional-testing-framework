@@ -15,29 +15,37 @@
 // specific language governing permissions and limitations
 // under the License.
 
-package qa.functional.testing.framework.properties;
+package qa.functional.testing.framework.utilities.testng;
 
-import org.aeonbits.owner.Config;
-import org.aeonbits.owner.Config.Sources;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import qa.functional.testing.framework.drivers.desktop.Driver;
 
 /**
  * @author ElisabethQA <92223530+ElisabethQA@users.noreply.github.com>
  */
-@Sources({ "classpath:framework.properties" })
-public interface FrameworkProperties extends Config {
-
-	@Key("webdriver.default")
-	@DefaultValue("CHROME")
-	Driver getWebDriverDefault();
+public class TestNgXmlFileTest {
 	
-	@Key("webdriver.grid.execution.default")
-	@DefaultValue("false")
-	boolean isWebDriverGridExecutionDefault();
-		
-	@Key("webdriver.path")
-	@DefaultValue("")
-	String getWebDriverPath();
+	@BeforeClass
+	public void setUp() {
+		// Static methods which doesn't need to be instantiated
+	}
+	
+	@Test
+	public void shouldBeAbleToGetChromeBrowserFromTestNgFile() {
+		assertNotNull(TestNgXmlFile.getWebDriver());
+		assertEquals(TestNgXmlFile.getWebDriver(), Driver.CHROME);
+		assertEquals(TestNgXmlFile.isGridExecution(), TestNgXmlFile.isFallbackDefaultValues() ? false : true);
+	}
+	
+	@AfterClass
+	public void tearDown() {
+		//
+	}
 	
 }

@@ -24,6 +24,7 @@
 	</developers>
 
 	<properties>
+		<apache.common.text.version>1.9</apache.common.text.version>
 		<java.version>11</java.version>
 		<lombok.version>1.18.22</lombok.version>
 		<owner.version>1.0.12</owner.version>
@@ -47,6 +48,12 @@
 	</build>
 
 	<dependencies>
+		<!-- Apache Commons/Commons-Text -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-text</artifactId>
+		    <version>${apache.common.text.version}</version>
+		</dependency>
 		<!-- Owner -->
 		<dependency>
 			<groupId>org.aeonbits.owner</groupId>
@@ -96,7 +103,6 @@
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>
 			<version>${testng.version}</version>
-			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
