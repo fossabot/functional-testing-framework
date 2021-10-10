@@ -72,7 +72,7 @@ public class TestNgXmlFile {
 	
 	public static boolean isGridExecution() {
 		return toBooleanParameterValue(TestNgParameters.GRID_EXECUTION, 
-			frameworkProperties.isWebDriverGridExecutionDefault());
+			frameworkProperties.isGridExecutionDefault());
 	}
 		
 	public static Driver getWebDriver() {

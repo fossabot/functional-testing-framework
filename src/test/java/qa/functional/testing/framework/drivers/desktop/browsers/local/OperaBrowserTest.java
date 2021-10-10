@@ -15,15 +15,19 @@
 // specific language governing permissions and limitations
 // under the License.
 
-package qa.functional.testing.framework.drivers.desktop.browsers;
+package qa.functional.testing.framework.drivers.desktop.browsers.local;
 
 import static org.testng.Assert.assertTrue;
+
+import java.net.MalformedURLException;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.opera.OperaDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import qa.functional.testing.framework.drivers.desktop.browsers.OperaBrowser;
 
 /**
  * @author ElisabethQA <92223530+ElisabethQA@users.noreply.github.com>
@@ -33,7 +37,7 @@ public class OperaBrowserTest {
 private WebDriver sut;
 	
 	@BeforeClass
-	public void setUp() {
+	public void setUp() throws MalformedURLException {
 		sut = new OperaBrowser().getWebDriver();
 	}
 	

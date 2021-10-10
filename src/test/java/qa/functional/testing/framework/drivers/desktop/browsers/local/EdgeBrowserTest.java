@@ -15,40 +15,40 @@
 // specific language governing permissions and limitations
 // under the License.
 
-package qa.functional.testing.framework.properties;
+package qa.functional.testing.framework.drivers.desktop.browsers.local;
 
-import org.aeonbits.owner.Config;
-import org.aeonbits.owner.Config.Sources;
+import static org.testng.Assert.assertTrue;
 
-import qa.functional.testing.framework.drivers.desktop.Driver;
+import java.net.MalformedURLException;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+import qa.functional.testing.framework.drivers.desktop.browsers.EdgeBrowser;
 
 /**
  * @author ElisabethQA <92223530+ElisabethQA@users.noreply.github.com>
  */
-@Sources({ "classpath:framework.properties" })
-public interface FrameworkProperties extends Config {
+public class EdgeBrowserTest {
 
-	static final String GRID_HUB_ENDPOINT = "/wd/hub";
+	private WebDriver sut;
 	
-	@Key("grid.execution.default")
-	@DefaultValue("false")
-	boolean isGridExecutionDefault();
+	@BeforeClass
+	public void setUp() throws MalformedURLException {
+		sut = new EdgeBrowser().getWebDriver();
+	}
 	
-	@Key("webdriver.grid.url")
-	@DefaultValue("http://localhost")
-	String getGridUrl();
+	@Test
+	public void shouldBeAbleToInstantiateEdgeBrowser() {
+		assertTrue(sut instanceof EdgeDriver);
+	}
 	
-	
-	@Key("webdriver.grid.port")
-	@DefaultValue("4444")
-	String getGridPort();
-	
-	@Key("webdriver.default")
-	@DefaultValue("CHROME")
-	Driver getWebDriverDefault();
-	
-	@Key("webdriver.path")
-	@DefaultValue("")
-	String getWebDriverPath();
+	@AfterClass
+	public void tearDown() {
+		sut.quit();
+	}
 	
 }

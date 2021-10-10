@@ -2,8 +2,9 @@
  
 <suite name="qa.functional.testing" verbose="1" parallel="methods" thread-count="4">
   <test name="Integration testing - Browser test">
+    <parameter name="gridExecution" value="true" />
     <packages>
-      <package name="qa.functional.testing.framework.drivers.desktop.browsers.local.*" />
+      <package name="qa.functional.testing.framework.drivers.desktop.browsers.remote.*" />
    </packages>
  </test>
 </suite>

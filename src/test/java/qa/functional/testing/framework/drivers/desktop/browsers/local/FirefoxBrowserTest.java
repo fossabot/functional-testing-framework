@@ -15,31 +15,35 @@
 // specific language governing permissions and limitations
 // under the License.
 
-package qa.functional.testing.framework.drivers.desktop.browsers;
+package qa.functional.testing.framework.drivers.desktop.browsers.local;
 
 import static org.testng.Assert.assertTrue;
 
+import java.net.MalformedURLException;
+
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import qa.functional.testing.framework.drivers.desktop.browsers.FirefoxBrowser;
+
 /**
  * @author ElisabethQA <92223530+ElisabethQA@users.noreply.github.com>
  */
-public class EdgeBrowserTest {
+public class FirefoxBrowserTest {
 
-	private WebDriver sut;
+private WebDriver sut;
 	
 	@BeforeClass
-	public void setUp() {
-		sut = new EdgeBrowser().getWebDriver();
+	public void setUp() throws MalformedURLException {
+		sut = new FirefoxBrowser().getWebDriver();
 	}
 	
 	@Test
-	public void shouldBeAbleToInstantiateEdgeBrowser() {
-		assertTrue(sut instanceof EdgeDriver);
+	public void shouldBeAbleToInstantiateFirefoxBrowser() {
+		assertTrue(sut instanceof FirefoxDriver);
 	}
 	
 	@AfterClass
