@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+ 
+<suite name="qa.functional.testing" verbose="1" parallel="methods" thread-count="1">
+  <test name="Integration testing - Test">
+  	<parameter name="webdriver" 	value="CHROME" 	/>	<!-- For the sake of the test, value must be set to CHROME -->
+  	<parameter name="gridExecution" value="true"	/>	<!-- For the sake of the test, value must be set to true -->
+    <packages>
+      <package name="qa.functional.testing.framework.utilities.testng.*" />
+   </packages>
+ </test>
+</suite>

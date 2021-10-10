@@ -17,7 +17,9 @@
 
 package qa.functional.testing.framework.drivers.desktop;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author ElisabethQA <92223530+ElisabethQA@users.noreply.github.com>
@@ -30,11 +32,16 @@ public enum Driver {
 	OPERA("Opera", "webdriver.opera.driver", "operadriver.exe");
 	
 	@Getter
-	private String browserName;
+	@Setter(AccessLevel.PRIVATE)
+	String browserName;
+	
 	@Getter
+	@Setter(AccessLevel.PRIVATE)
 	private String property;
+	
 	@Getter
-	private String executable;
+	@Setter(AccessLevel.PRIVATE)
+	String executable;
 	
 	private Driver(String browserName, String property, String executable) {
 		this.browserName = browserName;

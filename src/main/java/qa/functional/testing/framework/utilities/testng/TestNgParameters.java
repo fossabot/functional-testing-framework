@@ -14,30 +14,14 @@
 // KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations
 // under the License.
-
-package qa.functional.testing.framework.properties;
-
-import org.aeonbits.owner.Config;
-import org.aeonbits.owner.Config.Sources;
-
-import qa.functional.testing.framework.drivers.desktop.Driver;
+package qa.functional.testing.framework.utilities.testng;
 
 /**
  * @author ElisabethQA <92223530+ElisabethQA@users.noreply.github.com>
  */
-@Sources({ "classpath:framework.properties" })
-public interface FrameworkProperties extends Config {
+public class TestNgParameters {
 
-	@Key("webdriver.default")
-	@DefaultValue("CHROME")
-	Driver getWebDriverDefault();
-	
-	@Key("webdriver.grid.execution.default")
-	@DefaultValue("false")
-	boolean isWebDriverGridExecutionDefault();
-		
-	@Key("webdriver.path")
-	@DefaultValue("")
-	String getWebDriverPath();
+	public static final String GRID_EXECUTION = "gridExecution";
+	public static final String WEBDRIVER = "webdriver";
 	
 }
