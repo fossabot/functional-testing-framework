@@ -15,43 +15,40 @@
 // specific language governing permissions and limitations
 // under the License.
 
-package qa.functional.testing.framework.properties;
+package qa.functional.testing.framework.core.base;
 
-import org.aeonbits.owner.Config;
-import org.aeonbits.owner.Config.Sources;
+import org.slf4j.LoggerFactory;
+import org.testng.ITestContext;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 
-import qa.functional.testing.framework.drivers.desktop.Driver;
+import qa.functional.testing.framework.core.FrameworkCore;
+import qa.functional.testing.framework.core.FrameworkVersion;
 
 /**
  * @author ElisabethQA <92223530+ElisabethQA@users.noreply.github.com>
  */
-@Sources({ "classpath:framework.properties" })
-public interface FrameworkProperties extends Config {
+public abstract class TestCase extends FrameworkCore {
 
-	static final String GRID_HUB_ENDPOINT = "/wd/hub";
+	@BeforeSuite(alwaysRun = true)
+	public void initialize() {
+		FrameworkVersion.displayLogo();
+	}
 	
-	@Key("grid.execution.default")
-	@DefaultValue("false")
-	boolean isGridExecutionDefault();
+	@BeforeTest(alwaysRun = true)
+	public void setUp(ITestContext testContext) {
+		setExecutionContext(testContext);
+	}
 	
-	@Key("synchronization.wait.maximum.duration")
-	@DefaultValue("15")
-	int getSynchronizationWaitMaximumDuration();
+	@AfterSuite(alwaysRun = false) 
+	public void tearDown() {
+		clearExecutionContext();
+	}
 	
-	@Key("webdriver.grid.url")
-	@DefaultValue("http://localhost")
-	String getGridUrl();
-		
-	@Key("webdriver.grid.port")
-	@DefaultValue("4444")
-	String getGridPort();
-	
-	@Key("webdriver.default")
-	@DefaultValue("CHROME")
-	Driver getWebDriverDefault();
-	
-	@Key("webdriver.path")
-	@DefaultValue("")
-	String getWebDriverPath();
+	@AfterSuite(alwaysRun = true) 
+	public void shutdown() {
+		LoggerFactory.getLogger(this.getClass()).info("Shutting down...");
+	}
 	
 }
