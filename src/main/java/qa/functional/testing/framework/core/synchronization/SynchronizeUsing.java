@@ -15,43 +15,34 @@
 // specific language governing permissions and limitations
 // under the License.
 
-package qa.functional.testing.framework.core;
-
-import java.time.Duration;
-
-import org.aeonbits.owner.ConfigFactory;
-import org.testng.ITestContext;
+package qa.functional.testing.framework.core.synchronization;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
-import qa.functional.testing.framework.drivers.WebDriverFactory;
-import qa.functional.testing.framework.properties.FrameworkProperties;
 
 /**
  * @author ElisabethQA <92223530+ElisabethQA@users.noreply.github.com>
  */
-public abstract class FrameworkCore extends SeleniumCore {
+public enum SynchronizeUsing {
 	
-	@Getter(AccessLevel.PROTECTED)
-	FrameworkProperties frameworkProperties = ConfigFactory.create(FrameworkProperties.class);
+	ELEMENT_CLICKABLE("ElementClickable", "Element to clickable"),
+	ELEMENT_EXISTS("ElementExists", "Element exists"),
+	VISIBILITY_OF_ELEMENT("VisibilityOfElement", "Visibility of the element");
+
+	@Getter(AccessLevel.PUBLIC)
+	@Setter(AccessLevel.PRIVATE)
+	String name;
 	
 	@Getter(AccessLevel.PUBLIC)
-	int synchronizationMaximumAttempts = frameworkProperties.getSynchronizationMaximumAttempts();
-	
-	@Getter
 	@Setter(AccessLevel.PRIVATE)
-	String testName;
-			
-	public void setExecutionContext(ITestContext testContext) {
-		setTestName(testContext.getName());
-		setWebDriver(WebDriverFactory.getWebDriver());
-		setWait(Duration.ofSeconds(frameworkProperties.getSynchronizationWaitMaximumDuration()));
-	}
+	String description;
 	
-	public void clearExecutionContext() {
-		if (getWebDriver() != null) {
-			getWebDriver().quit();
-		}
+
+	private SynchronizeUsing(String name, String description) {
+		setName(name);
+		setDescription(description);
 	}
 }
+
+	
