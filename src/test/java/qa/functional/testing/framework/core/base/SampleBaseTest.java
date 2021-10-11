@@ -15,43 +15,29 @@
 // specific language governing permissions and limitations
 // under the License.
 
-package qa.functional.testing.framework.properties;
+package qa.functional.testing.framework.core.base;
 
-import org.aeonbits.owner.Config;
-import org.aeonbits.owner.Config.Sources;
+import static org.testng.Assert.assertTrue;
 
-import qa.functional.testing.framework.drivers.desktop.Driver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.annotations.Test;
 
 /**
  * @author ElisabethQA <92223530+ElisabethQA@users.noreply.github.com>
  */
-@Sources({ "classpath:framework.properties" })
-public interface FrameworkProperties extends Config {
+public class SampleBaseTest extends TestCase {
 
-	static final String GRID_HUB_ENDPOINT = "/wd/hub";
-	
-	@Key("grid.execution.default")
-	@DefaultValue("false")
-	boolean isGridExecutionDefault();
-	
-	@Key("synchronization.wait.maximum.duration")
-	@DefaultValue("15")
-	int getSynchronizationWaitMaximumDuration();
-	
-	@Key("webdriver.grid.url")
-	@DefaultValue("http://localhost")
-	String getGridUrl();
-		
-	@Key("webdriver.grid.port")
-	@DefaultValue("4444")
-	String getGridPort();
-	
-	@Key("webdriver.default")
-	@DefaultValue("CHROME")
-	Driver getWebDriverDefault();
-	
-	@Key("webdriver.path")
-	@DefaultValue("")
-	String getWebDriverPath();
+	@Test
+	public void sampleTestUsingSeleniumVanilla() {
+		getWebDriver().navigate().to("https://www.google.ca");
+		getWebDriver().findElement(By.name("q")).sendKeys("download selenium" + Keys.ENTER);
+		assertTrue(getWait().until(ExpectedConditions.visibilityOfElementLocated(
+			By.id("result-stats"))) instanceof WebElement);
+		setWebElements(getWebDriver().findElements(By.tagName("a")));
+		assertTrue(getWebElements().size() > 1);
+	}
 	
 }
