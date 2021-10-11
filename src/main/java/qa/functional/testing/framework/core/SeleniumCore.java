@@ -24,6 +24,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import qa.functional.testing.framework.core.interactions.common.Navigate;
+
 /**
  * @author ElisabethQA <92223530+ElisabethQA@users.noreply.github.com>
  */
@@ -64,6 +66,10 @@ public abstract class SeleniumCore {
 	
 	public void setWebElements(List<WebElement> webElements) {
 		SeleniumCore.webElements.set(webElements);
+	}
+	
+	public Navigate navigate() {
+		return new Navigate();
 	}
 	
 }
