@@ -34,6 +34,10 @@ public interface FrameworkProperties extends Config {
 	@DefaultValue("false")
 	boolean isGridExecutionDefault();
 	
+	@Key("synchronization.maximum.attempts")
+	@DefaultValue("3")
+	int getSynchronizationMaximumAttempts();
+	
 	@Key("synchronization.wait.maximum.duration")
 	@DefaultValue("15")
 	int getSynchronizationWaitMaximumDuration();
