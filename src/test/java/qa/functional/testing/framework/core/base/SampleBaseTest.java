@@ -36,6 +36,8 @@ public class SampleBaseTest extends TestCase {
 		getWebDriver().findElement(By.name("q")).sendKeys("download selenium" + Keys.ENTER);
 		assertTrue(getWait().until(ExpectedConditions.visibilityOfElementLocated(
 			By.id("result-stats"))) instanceof WebElement);
+		setWebElements(getWebDriver().findElements(By.tagName("a")));
+		assertTrue(getWebElements().size() > 1);
 	}
 	
 }

@@ -32,18 +32,18 @@ public class FrameworkVersion {
 		"  / _` |/ _` | |  _| | | | '_ \\ / __| __| |/ _ \\| '_ \\ / _` | |\n" +
 		" | (_| | (_| | | | | |_| | | | | (__| |_| | (_) | | | | (_| | |\n" +
 		"  \\__, |\\__,_| |_|  \\__,_|_| |_|\\___|\\__|_|\\___/|_| |_|\\__,_|_|\n" + 
-		"     | | ------------------------------------------------------\n" +
+		" --- | | ------------------------------------------------------\n" +
 		"     |_| Version %s\n" +
-		"  _      -----_---_--------------------------------------------\n" +
+		" -_-----------_---_--------------------------------------------\n" +
 		" | |         | | (_)                                           \n" +
 		" | |_ ___ ___| |_ _ _ __   __ _                                \n" + 
 		" | __/ _ / __| __| | '_ \\ / _` |  A Selenium WebDriver powered \n" +
 		" | ||  __\\__ | |_| | | | | (_| |  framework.                    \n" +
 		"  \\__\\___|___/\\__|_|_| |_|\\__, |  By Elisabeth Fournier (QA)   \n" +
 		"                           __/ |  Copyright 2021\n" +
-		"                          |___/  All rights reserved.\n\n" +
+		"                          |___/   All rights reserved.\n\n" +
 	    "Licensed to the Software Freedom Conservancy (SFC)\n" +
-		"http://www.apache.org/licenses/LICENSE-2.0 for more information.";
+		"http://www.apache.org/licenses/LICENSE-2.0 for more information.\n";
 	
 	public static void displayLogo() {
 		LoggerFactory.getLogger(FrameworkVersion.class).info(String.format(LOGO, "1.0.0-SNAPSHOT"));
