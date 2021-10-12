@@ -15,44 +15,26 @@
 // specific language governing permissions and limitations
 // under the License.
 
-package qa.functional.testing.framework.core;
-
-import java.time.Duration;
-
-import org.aeonbits.owner.ConfigFactory;
-import org.testng.ITestContext;
+package qa.functional.testing.framework.core.interactions.common;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
-import qa.functional.testing.framework.drivers.WebDriverFactory;
-import qa.functional.testing.framework.properties.FrameworkProperties;
 
 /**
  * @author ElisabethQA <92223530+ElisabethQA@users.noreply.github.com>
  */
-public abstract class FrameworkCore extends SeleniumCore {
-	
-	@Getter(AccessLevel.PROTECTED)
-	FrameworkProperties frameworkProperties = ConfigFactory.create(FrameworkProperties.class);
-	
-	@Getter(AccessLevel.PUBLIC)
-	int synchronizationMaximumAttempts = frameworkProperties.getSynchronizationMaximumAttempts();
+public enum Using {
+
+	JAVASCRIPT("JavaScript"),
+	SELENIUM("Selenium");
 	
 	@Getter
 	@Setter(AccessLevel.PRIVATE)
-	String testName;
-			
-	public void setExecutionContext(ITestContext testContext) {
-		setTestName(testContext.getName());
-		setWebDriver(WebDriverFactory.getWebDriver());
-		setWait(Duration.ofSeconds(frameworkProperties.getSynchronizationWaitMaximumDuration()));
-		setJavaScriptExecutor(getWebDriver());
+	String name;
+	
+	private Using(String name) {
+		this.name = name;
 	}
 	
-	public void clearExecutionContext() {
-		if (getWebDriver() != null) {
-			getWebDriver().quit();
-		}
-	}
 }

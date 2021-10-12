@@ -20,21 +20,32 @@ package qa.functional.testing.framework.core;
 import java.time.Duration;
 import java.util.List;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import qa.functional.testing.framework.core.interactions.common.Input;
 import qa.functional.testing.framework.core.interactions.common.Navigate;
 
 /**
  * @author ElisabethQA <92223530+ElisabethQA@users.noreply.github.com>
  */
 public abstract class SeleniumCore {
-	
+
+	private static ThreadLocal<JavascriptExecutor> javaScriptExecutor = new ThreadLocal<>();
 	private static ThreadLocal<WebDriverWait> wait = new ThreadLocal<>();
 	private static ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
 	private static ThreadLocal<WebElement> webElement = new ThreadLocal<>();
 	private static ThreadLocal<List<WebElement>> webElements = new ThreadLocal<>();
+
+	public void setJavaScriptExecutor(WebDriver webDriver) {
+		SeleniumCore.javaScriptExecutor.set((JavascriptExecutor) webDriver);
+	}
+	
+	public JavascriptExecutor getJavaScriptExecutor() {
+		return javaScriptExecutor.get();
+	}
 	
 	public void setWait(Duration duration) {
 		SeleniumCore.wait.set(new WebDriverWait(getWebDriver(), duration));
@@ -66,6 +77,10 @@ public abstract class SeleniumCore {
 	
 	public void setWebElements(List<WebElement> webElements) {
 		SeleniumCore.webElements.set(webElements);
+	}
+	
+	public Input input() {
+		return new Input();
 	}
 	
 	public Navigate navigate() {
