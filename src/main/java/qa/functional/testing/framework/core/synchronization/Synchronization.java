@@ -83,4 +83,5 @@ public abstract class Synchronization extends FrameworkCore {
 	}
 
 	public abstract WebElement synchronizeElement(By by) throws ElementSynchronizationException;
+	public abstract WebDriver synchronizeFrame(By by) throws ElementSynchronizationException;
 }

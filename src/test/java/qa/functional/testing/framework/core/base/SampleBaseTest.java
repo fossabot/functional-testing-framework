@@ -30,6 +30,12 @@ import org.testng.annotations.Test;
  */
 public class SampleBaseTest extends TestCase {
 
+	@Override
+	public void setUp() { } // Will be used later
+
+	@Override
+	public void run() { } // Will be used later
+	
 	@Test
 	public void sampleTestUsingSeleniumVanilla() {
 		getWebDriver().navigate().to("https://www.google.ca");

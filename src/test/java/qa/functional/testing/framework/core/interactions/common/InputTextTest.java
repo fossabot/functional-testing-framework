@@ -18,43 +18,40 @@
 package qa.functional.testing.framework.core.interactions.common;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.annotations.Test;
 
 import qa.functional.testing.framework.core.base.TestCase;
+import qa.functional.testing.framework.core.synchronization.SynchronizeElement;
 
 /**
  * @author ElisabethQA <92223530+ElisabethQA@users.noreply.github.com>
  */
-public class NavigateTest extends TestCase {
+public class InputTextTest extends TestCase {
 
 	@Override
 	public void setUp() { } // Will be used later
 
 	@Override
 	public void run() { } // Will be used later
-	
+
 	@Test
-	public void shouldBeAbleToNavigateThenGoBackAndGoForward() {
-		String urlInitial = "https://www.google.ca/?gws_rd=ssl";
-		String urlSearchResults = null;
-		assertTrue(navigate().to(urlInitial));
-		getWebDriver().findElement(By.name("q")).sendKeys("download selenium" + Keys.ENTER);
-		getWait().until(ExpectedConditions.visibilityOfElementLocated(By.id("result-stats")));
-		urlSearchResults = getWebDriver().getCurrentUrl();
-		assertTrue(navigate().back());
-		assertNotNull(getWait().until(ExpectedConditions.visibilityOfElementLocated(By.name("q"))));
-		assertEquals(getWebDriver().getCurrentUrl(), urlInitial);
-		assertTrue(navigate().forward());
-		assertNotNull(getWait().until(ExpectedConditions.visibilityOfElementLocated(By.id("result-stats"))));
-		assertEquals(getWebDriver().getCurrentUrl(), urlSearchResults);
-		assertTrue(navigate().refresh());
-		assertNotNull(getWait().until(ExpectedConditions.visibilityOfElementLocated(By.id("result-stats"))));
+	public void shouldBeAbleToSendText() {
+		String valueToSend = "Elisabeth";
+		navigate().to("https://www.w3schools.com/html/tryit.asp?filename=tryhtml_elem_input");
+		setWebDriver(new SynchronizeElement().synchronizeFrame(By.id("iframeResult")));
+		/* Selenium implementation */
+		assertTrue(input().text().sendText(By.id("fname"), valueToSend));
+		assertEquals(input().text().getAttributeValue(By.id("fname"), "value"), valueToSend);
+		assertTrue(input().text().clearText(By.id("fname")));
+		assertEquals(input().text().getAttributeValue(By.id("fname"), "value"), "");
+		/* JavaScript implementation */
+		assertTrue(input().text(Using.JAVASCRIPT).sendText(By.id("fname"), valueToSend));
+		assertEquals(input().text(Using.JAVASCRIPT).getAttributeValue(By.id("fname"), "value"), valueToSend);
+		assertTrue(input().text(Using.JAVASCRIPT).clearText(By.id("fname")));
+		assertEquals(input().text(Using.JAVASCRIPT).getAttributeValue(By.id("fname"), "value"), "");
 	}
 	
 }

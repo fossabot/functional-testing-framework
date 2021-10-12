@@ -37,7 +37,7 @@ public abstract class TestCase extends FrameworkCore {
 	}
 	
 	@BeforeTest(alwaysRun = true)
-	public void setUp(ITestContext testContext) {
+	public void testSetUp(ITestContext testContext) {
 		setExecutionContext(testContext);
 	}
 	
@@ -51,4 +51,14 @@ public abstract class TestCase extends FrameworkCore {
 		LoggerFactory.getLogger(this.getClass()).info("Shutting down...");
 	}
 	
+	/**
+	 * Test case set up
+	 * Use this method to prepare the execution of your test case.
+	 */
+	public abstract void setUp();
+	
+	/**
+	 * Insert your test case into this method
+	 */
+	public abstract void run();
 }

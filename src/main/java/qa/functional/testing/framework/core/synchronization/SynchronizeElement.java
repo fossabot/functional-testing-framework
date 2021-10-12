@@ -18,6 +18,7 @@
 package qa.functional.testing.framework.core.synchronization;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import qa.functional.testing.framework.core.FrameworkCore;
@@ -31,15 +32,26 @@ public class SynchronizeElement extends FrameworkCore {
 	private static final String SYNCHRONIZATION_FULLY_QUALIFIED_NAME = 
 			"qa.functional.testing.framework.core.synchronization.Synchronization%s";
 		
+	public WebDriver synchronizeFrame(By by) {
+		try {
+			return ((Synchronization) Class.forName(String.format(SYNCHRONIZATION_FULLY_QUALIFIED_NAME, 
+				SynchronizeUsing.FRAME_TO_BE_AVAILABLE.getName())).getDeclaredConstructor().newInstance()).
+					synchronizeFrame(by);
+		} catch (Exception e) {
+			throw new ElementSynchronizationException(
+				String.format("Unable to synchronize frame %s using '%s' synchronization implementation", 
+					by.toString(), SynchronizeUsing.FRAME_TO_BE_AVAILABLE.getDescription()));
+		}
+	}
+	
 	public WebElement synchronizeElement(By by, SynchronizeUsing method) {
 		try {
 			return ((Synchronization) Class.forName(String.format(SYNCHRONIZATION_FULLY_QUALIFIED_NAME, 
-					method.getName())).getDeclaredConstructor().newInstance()).synchronizeElement(by);
+				method.getName())).getDeclaredConstructor().newInstance()).synchronizeElement(by);
 		} catch (Exception e) {
 			throw new ElementSynchronizationException(
-				String.format("Unable to synchronize the element %s using '%s' synchronization implementation", 
+				String.format("Unable to synchronize element %s using '%s' synchronization implementation", 
 					by.toString(), method.getDescription()));
-			}
 		}
-	
+	}
 }

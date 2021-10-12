@@ -28,16 +28,15 @@ import qa.functional.testing.framework.exceptions.ElementSynchronizationExceptio
 /**
  * @author ElisabethQA <92223530+ElisabethQA@users.noreply.github.com>
  */
-public class SynchronizationVisibilityOfElement extends Synchronization {
+public class SynchronizationFrameToBeAvailable extends Synchronization {
 
 	@Override
 	public WebElement synchronizeElement(By by) throws ElementSynchronizationException {
-		return (WebElement) performSynchronization(by, ExpectedConditions.visibilityOfElementLocated(by));
+		throw new NotImplementedException();
 	}
 
 	@Override
 	public WebDriver synchronizeFrame(By by) throws ElementSynchronizationException {
-		throw new NotImplementedException();
+		return (WebDriver) performSynchronization(by, ExpectedConditions.frameToBeAvailableAndSwitchToIt(by));
 	}
-	
 }

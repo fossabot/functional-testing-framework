@@ -23,14 +23,8 @@ public class TextUsingJavaScript extends Text {
 	}
 	
 	public String getAttributeValue(By by, String attributeName) {
-		try {
-			setWebElement(new SynchronizeElement().synchronizeElement(by, SynchronizeUsing.ELEMENT_EXISTS));
-			return (String) getJavaScriptExecutor().
-					executeScript("arguments[0].getAttribute(arguments[1]);", getWebElement(), attributeName);
-		} catch (Exception e) {
-			//
-		}
-		return "";
+		/* Relying on the Selenium implementation until further notice. */
+		return super.getAttributeValue(by, attributeName);
 	}
 	
 	public String getInnerText(By by) {

@@ -17,7 +17,9 @@
 
 package qa.functional.testing.framework.core.synchronization;
 
+import org.apache.commons.lang3.NotImplementedException;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -31,6 +33,11 @@ public class SynchronizationElementClickable extends Synchronization {
 	@Override
 	public WebElement synchronizeElement(By by) throws ElementSynchronizationException {
 		return (WebElement) performSynchronization(by, ExpectedConditions.elementToBeClickable(by));
+	}
+
+	@Override
+	public WebDriver synchronizeFrame(By by) throws ElementSynchronizationException {
+		throw new NotImplementedException();
 	}
 
 }

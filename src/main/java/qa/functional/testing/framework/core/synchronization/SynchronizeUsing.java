@@ -28,8 +28,9 @@ public enum SynchronizeUsing {
 	
 	ELEMENT_CLICKABLE("ElementClickable", "Element to clickable"),
 	ELEMENT_EXISTS("ElementExists", "Element exists"),
+	FRAME_TO_BE_AVAILABLE("FrameToBeAvailable", "Frame to be available"),
 	VISIBILITY_OF_ELEMENT("VisibilityOfElement", "Visibility of the element");
-
+	
 	@Getter(AccessLevel.PUBLIC)
 	@Setter(AccessLevel.PRIVATE)
 	String name;

@@ -12,6 +12,12 @@ import qa.functional.testing.framework.exceptions.ElementSynchronizationExceptio
 
 public class SynchronizeElementTest extends TestCase {
 
+	@Override
+	public void setUp() { } // Will be used later
+
+	@Override
+	public void run() { } // Will be used later
+	
 	@Test
 	public void shouldBeAbleToSynchronizeElements() {
 		getWebDriver().navigate().to("https://www.google.ca");
